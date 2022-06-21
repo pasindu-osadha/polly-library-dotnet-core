@@ -20,7 +20,12 @@ namespace RequestProject.Controllers
             HttpClient client = new HttpClient();
             //var response = await client.GetAsync("https://localhost:7257/api/Response/5");
 
-            var response = await _clientPolicy.ImmediteHttpRetryPolicy.ExecuteAsync(()=> client.GetAsync("https://localhost:7257/api/Response/5"));
+            //Immediate retry policy 
+            //var response = await _clientPolicy.ImmediteHttpRetryPolicy.ExecuteAsync(()=> client.GetAsync("https://localhost:7257/api/Response/5"));
+           
+            // linear retry policy 
+            var response = await _clientPolicy.LinearHttpRetryPolicy.ExecuteAsync(() => client.GetAsync("https://localhost:7257/api/Response/5"));
+
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Response service returned sucsess result ");
