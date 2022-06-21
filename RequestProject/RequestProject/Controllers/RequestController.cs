@@ -24,7 +24,10 @@ namespace RequestProject.Controllers
             //var response = await _clientPolicy.ImmediteHttpRetryPolicy.ExecuteAsync(()=> client.GetAsync("https://localhost:7257/api/Response/5"));
            
             // linear retry policy 
-            var response = await _clientPolicy.LinearHttpRetryPolicy.ExecuteAsync(() => client.GetAsync("https://localhost:7257/api/Response/5"));
+            //var response = await _clientPolicy.LinearHttpRetryPolicy.ExecuteAsync(() => client.GetAsync("https://localhost:7257/api/Response/5"));
+
+            // Exponential retry policy 
+            var response = await _clientPolicy.ExponentialHttpRetryPolicy.ExecuteAsync(() => client.GetAsync("https://localhost:7257/api/Response/5"));
 
             if (response.IsSuccessStatusCode)
             {
