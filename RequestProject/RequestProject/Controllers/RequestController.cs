@@ -20,7 +20,7 @@ namespace RequestProject.Controllers
         public async Task<ActionResult> MakeRequest()
         {
             //HttpClient client = new HttpClient();
-            var client = _clientFactory.CreateClient();
+            var client = _clientFactory.CreateClient("ImmediateRetry");
             
             var response = await client.GetAsync("https://localhost:7257/api/Response/5");
 
